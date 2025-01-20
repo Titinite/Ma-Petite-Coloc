@@ -1,31 +1,32 @@
-import { ColocationModel } from "../databases/mongodb/colocation.model";
+import { ColocationRepository } from "../repositories/colocation.repository";
 import { IColocation } from "../databases/mongodb/colocation.model";
 import { ErrorResponse } from "../utils/error.utils";
 
 export class ColocationService {
+    private colocationRepository = new ColocationRepository();
 
-
-async getUserColocations(userId: string): Promise<IColocation[]> {
-    return ColocationModel.find({ members: userId });
-}
-
-
-async createColocation(colocationData: any): Promise<IColocation> {
-    const newColocation = new ColocationModel({ colocationData });
-    return newColocation.save();
-}
-
-
-async getColocationInfo(colocationId: string): Promise<IColocation | null> {
-    return ColocationModel.findById(colocationId);
-}
-
-
-async deleteColocation(colocationId: string): Promise<IColocation | null> {
-    const colocation = await ColocationModel.findByIdAndUpdate(colocationId, { status: "inactive" }, { new: true });
-    if (!colocation) {
-    throw new ErrorResponse(404, "COLLOCATION_NOT_FOUND", "Colocation not found.");
+    async listUserColocations(userId: string): Promise<IColocation[]> {
+        return await this.colocationRepository.getUserColocations(userId);
     }
-    return colocation;
-}
+
+
+    async createColocation(data: Partial<IColocation>): Promise<IColocation> {
+        try {
+            const createdColocation = this.colocationRepository.createColocation(data);
+            const savedColocation = await this.colocationRepository.save(createdColocation);
+            return savedColocation;
+        } catch (error) {
+            throw new ErrorResponse(400, "COLLOCATION_CREATION_FAILED", "Failed to create colocation");
+        }
+    }
+
+
+    async getColocationById(colocationId: string): Promise<IColocation | null> {
+        return await this.colocationRepository.getColocationInfo(colocationId);
+    }
+
+
+    async deactivateColocation(colocationId: string): Promise<IColocation | null> {
+        return await this.colocationRepository.deleteColocation(colocationId);
+    }
 }
