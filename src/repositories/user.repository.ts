@@ -1,22 +1,28 @@
-import { Repository } from "typeorm";
-import { UserEntity } from "../databases/mysql/user.entity";
-import { connectMySQLDB } from "../configs/databases/mysql.config";
-import { UserToCreateDTO } from "../types/user/dtos";
-import { userToCreateInput } from "../types/user/Inputs";
+import { UserModel, IUser } from "../databases/mongodb/user.model";
 
 export class UserRepository {
-  private userDB: Repository<UserEntity>;
-
-  constructor() {
-    this.userDB = connectMySQLDB.getRepository(UserEntity);
+  async findAll(): Promise<IUser[]> {
+    return UserModel.find();
   }
 
-  create(user: userToCreateInput): UserEntity {
-    const newUser = this.userDB.create(user);
-    return newUser
+  async findById(id: string): Promise<IUser | null> {
+    return UserModel.findOne({ id });
   }
 
-  async save(user: UserEntity): Promise<UserEntity> {
-    return this.userDB.save(user);
+  async findByEmail(email: string): Promise<IUser | null> {
+    return UserModel.findOne({ email });
+  }
+
+  create(userData: Partial<IUser>): IUser {
+    return new UserModel(userData);
+  }
+
+  async save(user: IUser): Promise<IUser> {
+    return user.save();
+  }
+
+  async delete(userId: string): Promise<IUser | null> {
+    const deletedUser = await UserModel.findByIdAndDelete(userId);
+    return deletedUser;
   }
 }

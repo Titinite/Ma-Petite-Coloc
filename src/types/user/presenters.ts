@@ -1,18 +1,24 @@
 import { Expose } from "class-transformer";
-import { IsNumber, IsString } from "class-validator";
-import { UserEntity } from "../../databases/mysql/user.entity";
+import { IsEmail, IsNumber, IsString } from "class-validator";
 
 export class UserPresenter {
   @Expose()
-  @IsNumber()
-  id: UserEntity['id'];
+  @IsEmail()
+  email: string;
 
   @Expose()
   @IsString()
-  firstname: UserEntity['firstname'];
+  password: string;
 
-  // à vous de jouer
+  @Expose()
+  @IsNumber()
+  age: number;
+
+  @Expose()
+  @IsString()
+  firstname: string;
+
+  @Expose()
+  @IsString()
   lastname: string;
-  email: string;
-  isActive: boolean;
 }
