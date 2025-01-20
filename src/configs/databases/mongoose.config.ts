@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 export const connectMongooseDB = async () => {
   try {
-    const mongoUri = process.env.MONGO_URI || "mongodb://localhost:27017/maptitecoloc";
+    const mongoUri = process.env.MONGO_URI || "mongodb://localhost:27017/mapetitecoloc";
 
     await mongoose.connect(mongoUri);
 
