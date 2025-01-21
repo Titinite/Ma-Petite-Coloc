@@ -1,6 +1,6 @@
 # Ma Petite Coloc
 
-Mon projet est une application Backend qui permet de gérer sa colocation (gestion des membres, gestion des utilisateurs...). Elle est développée en TypeScript (avec Node.js) et utilise une base de données MongoDB. Elle a été réalisé sur 2 jours, pendant un cours de Node.js à Sup de Vinci - Bordeaux. 
+Mon projet est une application Backend qui permet de gérer sa colocation (gestion des membres, gestion des utilisateurs...). Elle est développée en TypeScript (avec Node.js) et utilise une base de données MongoDB. Elle a été réalisé sur 2 jours, pendant un cours de Node.js à Sup de Vinci - Bordeaux.
 
 ## Table des Matières
 1. [Fonctionnalités](#fonctionnalités)
@@ -28,7 +28,7 @@ Les fonctionnalités suivantes ne sont pas encore implémentées :
    git clone https://github.com/Titinite/Ma-Petite-Coloc.git
    ```
 2. Modifiez les informations de connexion à la base de données dans `mongoose.config.ts` pour qu’elles correspondent à votre configuration locale.
-3. Lancez un l'application :
+3. Lancez l'application :
    ```bash
    npm run dev
    ```
