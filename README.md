@@ -15,6 +15,7 @@ Mon projet est une application Backend qui permet de gérer sa colocation (gesti
 
 - **Authentification** : Inscription utilisateur, connexion sécurisée, persistance de la connexion, informations de l'utilisateur, suppression d'un utilisateur.
 - **Gestion d'une colocation** : Listing des colocations d'un utilisateur, créer une colocation, informations d'une colocation, supprimer (désactiver) une colocation.
+- **Logs des actions** : Suivi des logs des actions utilisateurs et colocations.
 
 Les fonctionnalités suivantes ne sont pas encore implémentées :
 - **Gestion des colocataires** : Ajouter/supprimer des membres, transferer la colocation, voir le profil d'un membre de sa colocation.
