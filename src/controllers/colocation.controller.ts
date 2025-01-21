@@ -82,4 +82,18 @@ export class ColocationController {
             res.status(500).json(new ErrorResponse(500, "INTERNAL_SERVER_ERROR", "Failed to deactivate colocation"));
         }
     }
+
+
+    async updateColocation(req: Request, res: Response): Promise<void> {
+        try {
+            const { colocationId } = req.params;
+            const currentUserId = req.user.id;
+            const updateData = req.body;
+    
+            const updatedColocation = await this.colocationService.updateColocation(colocationId, updateData, currentUserId);
+            res.status(200).json(new SuccessResponse(200, "Colocation updated successfully", updatedColocation));
+        } catch (error: any) {
+            res.status(error.statusCode || 500).json(new ErrorResponse(error.statusCode || 500, error.code || "INTERNAL_SERVER_ERROR", error.message));
+        }
+    }    
 }
