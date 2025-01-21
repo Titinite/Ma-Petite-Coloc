@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import { UserRepository } from "../repositories/user.repository";
 import { IUser } from "../databases/mongodb/user.model";
+import { UserLogModel } from "../databases/mongodb/userLog.model";
 
 export class AuthService {
     private userRepository = new UserRepository();
@@ -20,6 +21,9 @@ export class AuthService {
 
         const accessToken = jwt.sign({ userId: user.id }, process.env.JWT_SECRET!, { expiresIn: "1h" });
         const refreshToken = jwt.sign({ userId: user.id }, process.env.JWT_REFRESH_SECRET!, { expiresIn: "7d" });
+
+        const log = new UserLogModel({ email: user.email, action: "USER_LOGED", timestamp: new Date()} );
+        await log.save();
 
         return { accessToken, refreshToken, user };
     }

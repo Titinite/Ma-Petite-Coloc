@@ -1,4 +1,5 @@
 import { IUser } from "../databases/mongodb/user.model";
+import { UserLogModel } from "../databases/mongodb/userLog.model";
 import { UserRepository } from "../repositories/user.repository";
 import { UserToCreateDTO } from "../types/user/dtos";
 import bcrypt from "bcrypt";
@@ -33,6 +34,8 @@ export class UserService {
     const savedUser = await this.userRepository.save(createdUser);
 
     // APPELER LE EMAIL SERVICE POUR ENVOYER UNE NOTIFICATION DE CREATION DE COMPTE A L'UTILISATEUR NOUVELLEMENT CRÉÉ
+    const log = new UserLogModel({ email: savedUser.email, action: "USER_CREATED", timestamp: new Date()} );
+    await log.save();
 
     // ON RETOURNE L'UTILISATEUR CRÉÉ
     return savedUser;
@@ -45,6 +48,10 @@ export class UserService {
       if (!deletedUser) {
         throw new ErrorResponse(404, "USER_NOT_FOUND", `User with ID ${userId} not found.`);
       }
+
+      const log = new UserLogModel({ email: deletedUser.email, action: "USER_DELETED", timestamp: new Date()} );
+      await log.save();
+
       return deletedUser;
     } catch (error: any) {
       if (error.message.includes("Invalid ID format")) {
