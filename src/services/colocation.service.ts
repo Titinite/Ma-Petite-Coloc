@@ -11,13 +11,9 @@ export class ColocationService {
 
 
     async createColocation(data: Partial<IColocation>): Promise<IColocation> {
-        try {
-            const createdColocation = this.colocationRepository.createColocation(data);
-            const savedColocation = await this.colocationRepository.save(createdColocation);
-            return savedColocation;
-        } catch (error) {
-            throw new ErrorResponse(400, "COLLOCATION_CREATION_FAILED", "Failed to create colocation");
-        }
+        const createdColocation = this.colocationRepository.createColocation(data);
+        const savedColocation = await this.colocationRepository.save(createdColocation);
+        return savedColocation;
     }
 
 

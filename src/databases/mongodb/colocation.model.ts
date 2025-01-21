@@ -10,8 +10,6 @@ export interface IColocation extends Document {
     owner: mongoose.Types.ObjectId;
     members: mongoose.Types.ObjectId[];
     status: "active" | "inactive";
-    createdAt?: Date;
-    updatedAt?: Date;
 }
 
 const ColocationSchema: Schema = new Schema<IColocation>({

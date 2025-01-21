@@ -7,6 +7,7 @@ export class ColocationController {
 
     private colocationService = new ColocationService();
 
+
     async getUserColocations(req: Request, res: Response): Promise<void> {
         try {
             const userId = req.params.userId;
@@ -20,13 +21,11 @@ export class ColocationController {
 
     async createColocation(req: Request, res: Response): Promise<any> {
         try {
-            const colocationData = req.body;
-            const newColocation = await this.colocationService.createColocation(colocationData);
-            console.log(newColocation);
+            const newColocation = await this.colocationService.createColocation(req.body);
+
             return res.status(201).json(new SuccessResponse(201, "Colocation created successfully", newColocation));
         } catch (error: any) {
-            console.error(error); 
-            return res.status(400).json(new ErrorResponse(400, "COLLOCATION_CREATION_FAILED", "Failed to create colocation"));
+            return res.status(400).json(new ErrorResponse(400, "COLLOCATION_CREATION_FAILED", error.message || "Failed to create colocation"));
         }
     }
 
