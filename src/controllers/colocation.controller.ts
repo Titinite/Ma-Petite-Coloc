@@ -1,7 +1,12 @@
 import { Request, Response } from "express";
 import { ColocationService } from "../services/colocation.service";
-import { ErrorResponse } from "../utils/error.utils";
+import { ErrorResponse } from "../utils/errorSimple.utils";
+import { ErrorFormResponse } from "../utils/errorForm.utils";
 import { SuccessResponse } from "../utils/success.utils";
+import { ColocationToCreateDTO } from "../types/colocation/dtos";
+import { ColocationPresenter } from "../types/colocation/presenters";
+import { plainToInstance } from "class-transformer";
+import { validate } from "class-validator";
 
 export class ColocationController {
 
@@ -21,9 +26,18 @@ export class ColocationController {
 
     async createColocation(req: Request, res: Response): Promise<any> {
         try {
-            const newColocation = await this.colocationService.createColocation(req.body);
+            const colocationToCreateDTO = plainToInstance(ColocationToCreateDTO, req.body, { excludeExtraneousValues: true });
+            const dtoErrors = await validate(colocationToCreateDTO);
 
-            return res.status(201).json(new SuccessResponse(201, "Colocation created successfully", newColocation));
+            if (dtoErrors.length > 0) {
+                console.error(dtoErrors);
+                throw new ErrorFormResponse("Create Colocation", dtoErrors, "Invalid fields");
+            }
+
+            const colocation = await this.colocationService.createColocation(req.body);
+            const createdColocation = plainToInstance(ColocationPresenter, colocation, { excludeExtraneousValues: true });
+
+            return res.status(201).json(new SuccessResponse(201, "Colocation created successfully", createdColocation));
         } catch (error: any) {
             return res.status(400).json(new ErrorResponse(400, "COLLOCATION_CREATION_FAILED", error.message || "Failed to create colocation"));
         }

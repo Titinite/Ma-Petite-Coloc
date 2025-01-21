@@ -1,4 +1,4 @@
-import mongoose, { Schema, Document } from "mongoose";
+import mongoose, { Schema, model, Document } from "mongoose";
 
 export interface IUser extends Document {
   firstName: string;
@@ -27,4 +27,4 @@ function generateUniqueId() {
   return 'user-' + Date.now();
 }
 
-export const UserModel = mongoose.model<IUser>("User", UserSchema);
+export const UserModel = model<IUser>("User", UserSchema);

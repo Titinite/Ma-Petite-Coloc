@@ -1,6 +1,7 @@
 import { ColocationRepository } from "../repositories/colocation.repository";
 import { IColocation } from "../databases/mongodb/colocation.model";
-import { ErrorResponse } from "../utils/error.utils";
+import { ErrorResponse } from "../utils/errorSimple.utils";
+import { ColocationToCreateDTO } from "../types/colocation/dtos";
 
 export class ColocationService {
     private colocationRepository = new ColocationRepository();
@@ -10,7 +11,7 @@ export class ColocationService {
     }
 
 
-    async createColocation(data: Partial<IColocation>): Promise<IColocation> {
+    async createColocation(data: ColocationToCreateDTO): Promise<IColocation> {
         const createdColocation = this.colocationRepository.createColocation(data);
         const savedColocation = await this.colocationRepository.save(createdColocation);
         return savedColocation;

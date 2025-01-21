@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { UserRepository } from "../repositories/user.repository";
-import { ErrorResponse } from "../utils/error.utils";
+import { ErrorResponse } from "../utils/errorSimple.utils";
 
 const userRepository = new UserRepository();
 

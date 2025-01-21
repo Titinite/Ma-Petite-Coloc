@@ -1,6 +1,6 @@
 import { ColocationModel } from "../databases/mongodb/colocation.model";
 import { IColocation } from "../databases/mongodb/colocation.model";
-import { ErrorResponse } from "../utils/error.utils";
+import { ErrorResponse } from "../utils/errorSimple.utils";
 
 export class ColocationRepository {
 

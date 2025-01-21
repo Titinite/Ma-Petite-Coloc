@@ -5,7 +5,7 @@ import { UserToCreateDTO } from "../types/user/dtos";
 import { plainToInstance } from "class-transformer";
 import { validate } from "class-validator";
 import { UserPresenter } from "../types/user/presenters";
-import { ErrorResponse } from "../utils/error.utils";
+import { ErrorResponse } from "../utils/errorSimple.utils";
 import { SuccessResponse } from "../utils/success.utils";
 
 export class UserController {
@@ -52,8 +52,8 @@ export class UserController {
       
       if (dtoErrors.length > 0) {
         console.log(dtoErrors);
-      throw new Error("Invalid fields");
-    }
+        throw new Error("Invalid fields");
+      }
     
     const user = await this.userService.registerUser(req.body);
     // appeler le logger service pour enregistrer QUI a créer un utilisateur (peut être un admin ou l'utilisateur lui même (?)  )
@@ -62,7 +62,6 @@ export class UserController {
     
     res.status(201).json(new SuccessResponse(201, "User profile created successfully", [createdUser]));
     } catch (error: any) {
-      console.error(error);
       res.status(400).json(new ErrorResponse(400, "REGISTER_FAILED", error.message));
     }
   };
@@ -76,7 +75,6 @@ export class UserController {
 
       res.status(200).json({ accessToken, refreshToken, loggedInUser });
     } catch (error: any) {
-      console.error(error);
       res.status(400).json(new ErrorResponse(400, "LOGIN_FAILED", error.message));
     }
   };

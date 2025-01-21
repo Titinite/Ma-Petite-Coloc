@@ -2,7 +2,7 @@ import { IUser } from "../databases/mongodb/user.model";
 import { UserRepository } from "../repositories/user.repository";
 import { UserToCreateDTO } from "../types/user/dtos";
 import bcrypt from "bcrypt";
-import { ErrorResponse } from "../utils/error.utils";
+import { ErrorResponse } from "../utils/errorSimple.utils";
 
 export class UserService {
   private userRepository = new UserRepository();

@@ -1,5 +1,4 @@
-import { Schema, model, Document } from "mongoose";
-import mongoose from "mongoose";
+import mongoose, { Schema, model, Document } from "mongoose";
 
 export interface IColocation extends Document {
     name: string;
@@ -7,8 +6,8 @@ export interface IColocation extends Document {
     area: number;
     numberOfRooms: number;
     agency?: string;
-    owner: mongoose.Types.ObjectId;
-    members: mongoose.Types.ObjectId[];
+    owner: string;
+    members: string[];
     status: "active" | "inactive";
 }
 
@@ -18,8 +17,8 @@ const ColocationSchema: Schema = new Schema<IColocation>({
     area: { type: Number, required: true },
     numberOfRooms: { type: Number, required: true },
     agency: { type: String },
-    owner: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
-    members: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+    owner: { type: String, ref: "User", required: true },
+    members: [{ type: Array, ref: "User" }],
     status: { type: String, enum: ["active", "inactive"], default: "active" },
   },
   { timestamps: true }

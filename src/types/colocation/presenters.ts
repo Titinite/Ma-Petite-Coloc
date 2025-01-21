@@ -1,6 +1,5 @@
 import { Expose } from "class-transformer";
-import { IsObject, IsNumber, IsString } from "class-validator";
-import mongoose from "mongoose";
+import { IsNumber, IsString, IsArray } from "class-validator";
 
 export class ColocationPresenter {
     @Expose()
@@ -24,12 +23,12 @@ export class ColocationPresenter {
     agency?: string;
 
     @Expose()
-    @IsObject()
-    owner: mongoose.Types.ObjectId;
+    @IsString()
+    owner: string;
 
     @Expose()
-    @IsObject()
-    members: mongoose.Types.ObjectId[];
+    @IsArray()
+    members: string[];
 
     @Expose()
     @IsString()
