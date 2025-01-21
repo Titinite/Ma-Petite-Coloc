@@ -18,6 +18,6 @@ routes.get("/user/:userId/colocations", (req, res) => colocationController.getUs
 routes.get("/:colocationId", (req, res) => colocationController.getColocationInfo(req, res));
 
 // Route pour supprimer une colocation (en la désactivant)
-routes.delete("/:colocationId", colocationController.deleteColocation);
+routes.delete("/:colocationId", (req, res) => colocationController.deleteColocation(req, res));
 
 export default routes;

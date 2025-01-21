@@ -2,6 +2,7 @@ import { ColocationRepository } from "../repositories/colocation.repository";
 import { IColocation } from "../databases/mongodb/colocation.model";
 import { ErrorResponse } from "../utils/errorSimple.utils";
 import { ColocationToCreateDTO } from "../types/colocation/dtos";
+import { ColocationLogModel } from "../databases/mongodb/colocationLog.model";
 
 export class ColocationService {
     private colocationRepository = new ColocationRepository();
@@ -24,6 +25,9 @@ export class ColocationService {
         }
         const createdColocation = this.colocationRepository.createColocation(data);
         const savedColocation = await this.colocationRepository.save(createdColocation);
+
+        const log = new ColocationLogModel({ name: savedColocation.name, action: "COLOCATION_CREATED", timestamp: new Date()} );
+        await log.save();
         return savedColocation;
     }
 

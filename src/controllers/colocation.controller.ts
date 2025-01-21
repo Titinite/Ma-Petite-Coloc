@@ -70,13 +70,16 @@ export class ColocationController {
     }
 
 
-    async deleteColocation(req: Request, res: Response): Promise<void> {
+    async deleteColocation(req: Request, res: Response): Promise<any> {
         try {
             const colocationId = req.params.colocationId;
             const deletedColocation = await this.colocationService.deactivateColocation(colocationId);
+            if (!deletedColocation) {
+                return res.status(404).json(new ErrorResponse(404, "COLLOCATION_NOT_FOUND", "Colocation not found"));
+            }
             res.status(200).json(new SuccessResponse(200, "Colocation deactivated successfully", deletedColocation));
         } catch (error: any) {
-            res.status(500).json(new ErrorResponse(500, "INTERNAL_SERVER_ERROR", "Failed to desactivate colocation"));
+            res.status(500).json(new ErrorResponse(500, "INTERNAL_SERVER_ERROR", "Failed to deactivate colocation"));
         }
     }
 }
