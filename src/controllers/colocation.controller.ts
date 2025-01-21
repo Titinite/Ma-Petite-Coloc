@@ -13,6 +13,16 @@ export class ColocationController {
     private colocationService = new ColocationService();
 
 
+    async getColocations(req: Request, res: Response): Promise<void> {
+        try {
+            const colocations = await this.colocationService.listAllColocations();
+            res.status(200).json(new SuccessResponse(200, "Colocations fetched successfully", colocations));
+        } catch (error: any) {
+            res.status(500).json(new ErrorResponse(500, "INTERNAL_SERVER_ERROR", error.message || "Failed to fetch colocations"));
+        }
+    }
+
+
     async getUserColocations(req: Request, res: Response): Promise<void> {
         try {
             const userId = req.params.userId;
@@ -66,7 +76,7 @@ export class ColocationController {
             const deletedColocation = await this.colocationService.deactivateColocation(colocationId);
             res.status(200).json(new SuccessResponse(200, "Colocation deactivated successfully", deletedColocation));
         } catch (error: any) {
-            res.status(500).json(new ErrorResponse(500, "INTERNAL_SERVER_ERROR", "Failed to deactivate colocation"));
+            res.status(500).json(new ErrorResponse(500, "INTERNAL_SERVER_ERROR", "Failed to desactivate colocation"));
         }
     }
 }

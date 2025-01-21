@@ -4,8 +4,14 @@ import { ErrorResponse } from "../utils/errorSimple.utils";
 
 export class ColocationRepository {
 
+
+    async getAllColocations(): Promise<IColocation[]> {
+        return ColocationModel.find().exec();
+    }
+
+
     async getUserColocations(userId: string): Promise<IColocation[]> {
-        return ColocationModel.find({ members: userId }).exec();
+        return ColocationModel.find({ owner: userId }).exec();
     }
 
 
@@ -16,9 +22,8 @@ export class ColocationRepository {
     async save(colocation: IColocation): Promise<IColocation> {
         try {
             return await colocation.save();
-        } catch (error) {
-            console.error("Error saving colocation:", error);
-            throw new Error("Failed to save colocation to database");
+        } catch (error: any) {;
+            throw new ErrorResponse(400, "COLLOCATION_CREATION_FAILED", error.message || "Failed to save colocation");
         }
     }
 
@@ -34,5 +39,10 @@ export class ColocationRepository {
         throw new ErrorResponse(404, "COLLOCATION_NOT_FOUND", "Colocation not found.");
         }
         return colocation;
+    }
+
+
+    async findByName(name: string): Promise<IColocation | null> {
+        return ColocationModel.findOne({ name });
     }
 }
