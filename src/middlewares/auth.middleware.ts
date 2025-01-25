@@ -5,6 +5,7 @@ import { ErrorResponse } from "../utils/errorSimple.utils";
 
 const userRepository = new UserRepository();
 
+// Vérifier que le tocken est bien valide
 export const authenticateJWT = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
     const token = req.header('Authorization')?.replace('Bearer ', '');
 

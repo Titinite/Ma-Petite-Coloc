@@ -56,10 +56,8 @@ export class UserController {
       }
     
     const user = await this.userService.registerUser(req.body);
-    // appeler le logger service pour enregistrer QUI a créer un utilisateur (peut être un admin ou l'utilisateur lui même (?)  )
-
     const createdUser = plainToInstance(UserPresenter, user, { excludeExtraneousValues: true });
-    
+
     res.status(201).json(new SuccessResponse(201, "User profile created successfully", [createdUser]));
     } catch (error: any) {
       res.status(400).json(new ErrorResponse(400, "REGISTER_FAILED", error.message));
