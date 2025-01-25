@@ -1,0 +1,431 @@
+{
+	"info": {
+		"_postman_id": "4062d27f-7c77-4abf-b09f-9854a390f361",
+		"name": "Ma petite coloc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40971631"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Titi\",\r\n    \"lastName\": \"Nite\",\r\n    \"email\": \"titinite@example.com\",\r\n    \"password\": \"titinite\",\r\n    \"age\": 95\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"thibault@example.com\",\r\n  \"password\": \"thibault\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Me",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ1c2VyLTE3MzczNzAxMTE0MzYiLCJpYXQiOjE3Mzc0NTIzODQsImV4cCI6MTczNzQ1NTk4NH0.jy6Ay8YGO72HMzqANQ9ilyuYvUjzpogYQEUA-9WLwfo",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/users/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "RefreshToken",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ1c2VyLTE3MzczNzAxMTE0MzYiLCJpYXQiOjE3MzczODI1NjMsImV4cCI6MTczNzk4NzM2M30.bZD9oXl9FELEUkpYMH42c0QcLjeRza-PdEwdX6sOajM\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/refresh",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ1c2VyLTE3Mzc0NjA4NTIyMjkiLCJpYXQiOjE3Mzc0NjEyMTUsImV4cCI6MTczNzQ2NDgxNX0.jpIJTtuctO8boLxZQVQKtRmYbFGR3-BQY6T7Tl1_Obc",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/users/delete/:userId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"delete",
+								":userId"
+							],
+							"query": [
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "678f8c7452e92d4980c65c74"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Colections",
+			"item": [
+				{
+					"name": "Colocations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/colocations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"colocations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ1c2VyLTE3MzczNzAxMTE0MzYiLCJpYXQiOjE3MzczOTgyODUsImV4cCI6MTczNzQwMTg4NX0.rn244ygHHPWQdNNZtEamMYptPcW22RFp5sETROC15qA",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Colocation Bordeaux\",\r\n    \"location\": \"Bordeaux\",\r\n    \"area\": 226,\r\n    \"numberOfRooms\": 3,\r\n    \"agency\": \"Century 21\",\r\n    \"owner\": \"678e3bf4698cdd4334842a3b\",\r\n    \"members\": [\r\n        \"678e3bf4698cdd4334842a3b\",\r\n        \"678e5b663861dff0a54e0501\"\r\n    ],\r\n    \"status\": \"active\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/colocations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"colocations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ColocationsByUser",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ1c2VyLTE3MzczNzAxMTE0MzYiLCJpYXQiOjE3MzczOTgyODUsImV4cCI6MTczNzQwMTg4NX0.rn244ygHHPWQdNNZtEamMYptPcW22RFp5sETROC15qA",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:3000/api/colocations/user/:userId/colocations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"colocations",
+								"user",
+								":userId",
+								"colocations"
+							],
+							"variable": [
+								{
+									"key": "userId",
+									"value": "678e3bf4698cdd4334842a3b"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Infos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/colocations/:colocationId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"colocations",
+								":colocationId"
+							],
+							"variable": [
+								{
+									"key": "colocationId",
+									"value": "678f9811ec5547c6f5e71c54"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/colocations/:colocationId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"colocations",
+								":colocationId"
+							],
+							"variable": [
+								{
+									"key": "colocationId",
+									"value": "678f974bec5547c6f5e71c51"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"members\": [\r\n        \"Patrice\",\r\n        \"Thibault\"\r\n    ],\r\n    \"owner\": \"Quentin\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/colocations/:colocationId",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"colocations",
+								":colocationId"
+							],
+							"variable": [
+								{
+									"key": "colocationId",
+									"value": "678f974bec5547c6f5e71c51"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Logs",
+			"item": [
+				{
+					"name": "Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/logs/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"logs",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Colocations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/logs/colocations",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"logs",
+								"colocations"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
