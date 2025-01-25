@@ -8,7 +8,8 @@ Mon projet est une application Backend qui permet de gérer sa colocation (gesti
 3. [Utilisation](#utilisation)
 4. [Structure du Projet](#structure-du-projet)
 5. [Technologies](#technologies)
-6. [Auteurs](#auteurs)
+6. [Autres livrables](#autres-livrables)
+7. [Auteurs](#auteurs)
 
 
 ## Fonctionnalités
@@ -58,6 +59,11 @@ Pour utiliser l'application, vous aurez aussi besoin de Postman : il fait guise 
 - **Node.js** : Base du projet
 - **TypeScript** : Langage utilisé pour toute l'application Backend
 - **MongoDB (NoSQL)** : Base de données
+
+
+## Autres livrables
+- **Note explicative des choix techniques** : [📝 Télécharger le PDF](NOTEEXPLICATIVE.pdf)
+- **Documentation Postman avec les différents Endpoints :** [📂 Télécharger la collection Postman](POSTMANCOLLECTION.json)
 
 
 ## Auteurs
