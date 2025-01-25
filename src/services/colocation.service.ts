@@ -54,6 +54,8 @@ export class ColocationService {
 
 
     async updateColocation(colocationId: string, updateData: Partial<IColocation>): Promise<IColocation> {
+        const log = new ColocationLogModel({ name: colocationId, action: "COLOCATION_UPDATED", timestamp: new Date()} );
+        await log.save();
         return await this.colocationRepository.update(colocationId, updateData); 
     }       
 }
