@@ -51,4 +51,9 @@ export class ColocationService {
             throw error;
         }
     }
+
+
+    async updateColocation(colocationId: string, updateData: Partial<IColocation>): Promise<IColocation> {
+        return await this.colocationRepository.update(colocationId, updateData); 
+    }       
 }

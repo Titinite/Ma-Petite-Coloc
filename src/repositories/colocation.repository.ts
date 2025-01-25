@@ -47,20 +47,14 @@ export class ColocationRepository {
     }
 
 
-    async updateColocation(colocationId: string, updateData: Partial<IColocation>, currentUserId: string): Promise<IColocation> {
+    async update(colocationId: string, updateData: Partial<IColocation>): Promise<IColocation> {
         const colocation = await ColocationModel.findById(colocationId);
-    
         if (!colocation) {
             throw new ErrorResponse(404, "COLLOCATION_NOT_FOUND", "Colocation not found");
         }
-        if (colocation.owner !== currentUserId) {
-            throw new ErrorResponse(403, "FORBIDDEN", "Only the owner can update this colocation");
-        }
-    
-        if (updateData.name) colocation.name = updateData.name;
-        
+        if (updateData.members) colocation.members = updateData.members;
+        if (updateData.owner) colocation.owner = updateData.owner;
         await colocation.save();
-    
         return colocation;
     }    
 }
